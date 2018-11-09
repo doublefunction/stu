@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  	<class name="com.tarena.entity.User" table="User">
+		<id name="id" type="java.lang.Integer" column="id">
+		
+			
+		</id>
+		
+		<property name="name" type="java.lang.String" column="name" />
+		<property name="password" type="java.lang.String" column="password" />
+		<property name="token" type="java.lang.String" column="token" />
+		<property name="nick" type="java.lang.String" column="nick" />
+	 <set name="courses">
+		 
+		 	<key column="id"/>
+		 	<!-- 
+		 		one-to-many声明了2张表的关系；
+		 		class声明了另一方的类型，从而
+		 		可知另一方的表名；
+		 	 -->
+		 	<one-to-many 
+		 		class="com.tarena.entity.Course"/>
+		 </set>
+	</class>
+	
+</hibernate-mapping>

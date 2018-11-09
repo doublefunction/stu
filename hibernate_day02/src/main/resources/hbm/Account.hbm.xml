@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tarena.entity.Account" table="ACCOUNT">
+		<id name="account_id" type="integer" column="account_id">
+			<generator class="sequence">
+				<param name="sequence">ACCOUNT_SEQ</param>
+			</generator>
+		</id>
+		<property name="recommender_id" 
+			type="integer" column="recommender_id"/>
+		<property name="login_name" 
+			type="string" column="login_name"/>
+		<property name="login_passwd" 
+			type="string" column="login_passwd"/>
+		<property name="status" 
+			type="string" column="status"/>
+		<property name="create_date" 
+			type="timestamp" column="create_date"/>
+		<property name="pause_date" 
+			type="timestamp" column="pause_date"/>
+		<property name="close_date" 
+			type="timestamp" column="close_date"/>
+		<property name="real_name" 
+			type="string" column="real_name"/>
+		<property name="idcard_no" 
+			type="string" column="idcard_no"/>
+		<property name="birthdate" 
+			type="date" column="birthdate"/>
+		<property name="gender" 
+			type="string" column="gender"/>
+		<property name="occupation" 
+			type="string" column="occupation"/>
+		<property name="telephone" 
+			type="string" column="telephone"/>
+		<property name="email" 
+			type="string" column="email"/>
+		<property name="mailaddress" 
+			type="string" column="mailaddress"/>
+		<property name="zipcode" 
+			type="string" column="zipcode"/>
+		<property name="qq" 
+			type="string" column="qq"/>
+		<property name="last_login_time" 
+			type="timestamp" column="last_login_time"/>
+		<property name="last_login_ip" 
+			type="string" column="last_login_ip"/>
+			
+		<!-- 
+			目标：
+			select * from service
+			where account_id=?
+		 -->
+		 <!-- 
+		 	set声明了关联属性的类型；
+		 	name声明了关联属性的名称；
+		  -->
+		 <set name="services">
+		 	<!-- 
+		 		column声明了外键字段名；
+		 	 -->
+		 	<key column="account_id"/>
+		 	<!-- 
+		 		one-to-many声明了2张表的关系；
+		 		class声明了另一方的类型，从而
+		 		可知另一方的表名；
+		 	 -->
+		 	<one-to-many 
+		 		class="com.tarena.entity.Service"/>
+		 </set>
+		
+	</class>
+</hibernate-mapping>

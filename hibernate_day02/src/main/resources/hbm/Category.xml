@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.tarena.entity.Category" table="t_category">
+        <!--一,主键属性  -->
+        <id name="cid" column="cid">
+            <generator class="native"></generator>
+        </id>
+        <!-- 二,其它属性 -->
+        <property name="cname" column="cname"/>
+    
+        <!-- 三,表示和商品的关系 -->
+        <!--3.1 set标签的name属性:多的一方的集合的名字  -->
+        <set name="products" cascade="all">
+            <!--3.2 key的 column表示多的一方外键名 -->
+            <key column="cid"/>
+            <!--3.3 one-to-many的class属性表示多的一方类的全限定名  -->
+            <one-to-many class="com.tarena.entity.Product"/>
+        </set>
+
+  
+    </class>
+</hibernate-mapping>
